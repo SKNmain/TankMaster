@@ -1,0 +1,41 @@
+WIDOKI
+1 rzeczywisty obraz
+gm.Show();
+
+2 rzeczywisty obraz + czołgi
+gm.ShowTanks();
+
+3 przeszkody po triangulacji
+gm.ShowObstacles();
+
+4 rzeczywisty obraz + statystyki
+gm.ShowStats();
+
+5 przeszkody widoczne na biało
+gm.ShowObstaclesColor();
+
+6 rzeczywisty obraz + granice mapy
+
+
+KONTROLA NAD KOMPONENTAMI
+f znajdowanie czołgów
+cs.BlinkTank(0);
+
+t triangulacja
+gm.CalibrateObstacles(resultImage);
+
+g zmiana koloru przeszkód na ten który się zaznaczy
+gm.Show();
+gm.ChangeObstaclesColor();
+
+h zaznaczenie na biało przeszkód i zmiana ograniczeń kolorów
+gm.ShowObstaclesColor();
+gm.CreateTrackbars();
+
+r zmiana granicy mapy
+gm.ChangeMapSize();
+
+c przestawienie widoku między kamerą, a obrazkiem
+if(cs.camView) cs.camView = false;
+else cs.camView = true;
+cs.SwitchCam();

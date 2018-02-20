@@ -175,7 +175,7 @@ void GameManager::CalibrateObstacles(Mat &realCamView) //wykryj na nowo przeszko
     mapfile.open("tankmap.txt", ios::out);
 
     obstaclesManager.SetImageToDetection(realCamView);
-    obstaclesManager.obstaclesVertices = obstaclesManager.ObstacleDetection(mapfile);
+    obstaclesManager.ObstacleDetection(mapfile);
 
     mapfile.close();
 }

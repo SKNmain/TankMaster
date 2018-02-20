@@ -17,15 +17,16 @@ class Obstacles
 
         bool viewIsReady;
 
-        vector<vector<Point> > obstaclesVertices; //tablica która przechowóje wartości z
+        vector<vector<Point> > obstaclesVertices; //tablica która przechowóje wierzchołki po wykonaniu funkcji ObstacleDetection()
 
         Obstacles();
         int TurnPoint(Point p0, Point p1, Point p2); //wyznaczenie prawo lub lewo skrętności jakiś 3 punktów
         void SetImageToDetection(Mat realCamView); //pobranie obrazu z zewnątrz np kamery
         void CreateTrackbars(); //wyświetlenie sówaczków do zmiany kolorów przeszkód
-        vector<vector<Point> > ObstacleDetection(ofstream &outFile); //wyszukuje prrzeszkody na grafice i zapisuje punkty do pliku
+        vector<vector<Point> > ObstacleDetection(); //wyszukuje prrzeszkody na grafice i zapisuje punkty do pliku ofstream &outFile
         Mat *GetTriangleView(); //wypluwa obrazek z narysowanymi przeszkodami po triangulacji dostępne dopiero po urzyciu funkcji ObstacleDetection(ofstream)
         Mat *GetColorView(); //wypluwa obrazek z zaznaczonymi tylko i wyłącznie przeszkodami
+        void SetObstaclesColor(int h_min, int h_max, int s_min, int s_max, int v_min, int v_max); //ustawienie koloru przeszkód
 
 
 };
@@ -78,8 +79,19 @@ void Obstacles::CreateTrackbars() //zmiana sówaczka
     createTrackbar( "V_MAX", ChooseColorWindow, &V_MAX, 255, TrackbarObstacleColor);
 }
 
+Obstacles::void SetObstaclesColor(int h_min, int h_max, int s_min, int s_max, int v_min, int v_max)
+{
+    H_MIN = h_min;
+    H_MAX = h_max;
+    S_MIN = s_min;
+    S_MAX = s_max;
+    V_MIN = v_min;
+    V_MAX = v_max;
+}
+
+
 //przeszukuje obraz w poszukiwaniu konturów, a następnie tworzy z nich uproszczone figury
-vector<vector<Point> > Obstacles::ObstacleDetection(ofstream &outFile)
+vector<vector<Point> > Obstacles::ObstacleDetection() //ofstream &outFile
 {
     cvtColor(imageToContur, imageToContur, COLOR_BGR2HSV);
     inRange(imageToContur, Scalar(H_MIN,S_MIN,V_MIN),Scalar(H_MAX,S_MAX,V_MAX), imageToContur);
@@ -241,6 +253,7 @@ vector<vector<Point> > Obstacles::ObstacleDetection(ofstream &outFile)
 
     readyView = triangleImg.clone();
 
+    /*
     //zapisywanie do pliku
     outFile << TriangulationPoints.size() << "\n"; //ilość przeszkód
 
@@ -258,9 +271,12 @@ vector<vector<Point> > Obstacles::ObstacleDetection(ofstream &outFile)
             outFile << TriangulationPoints[i][j].x << " " << TriangulationPoints[i][j].y << "\n";
         }
     }
-
+    */
     cout << "triangulate done\n";
     viewIsReady = true;
+
+    obstaclesVertices = readyApprox;
+
     return readyApprox;
 }
 

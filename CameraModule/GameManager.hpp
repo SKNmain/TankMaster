@@ -175,7 +175,7 @@ void GameManager::CalibrateObstacles(Mat &realCamView) //wykryj na nowo przeszko
     mapfile.open("tankmap.txt", ios::out);
 
     obstaclesManager.SetImageToDetection(realCamView);
-    obstaclesManager.ObstacleDetection(mapfile);
+    obstaclesManager.obstaclesVertices = obstaclesManager.ObstacleDetection(mapfile);
 
     mapfile.close();
 }
@@ -212,13 +212,13 @@ Mat *GameManager::GetBorder(Mat *realCamView)
     borderImage = (*realCamView).clone();
 
     for(int i = 0; i < 10; ++i)
+    {
+        for(int j = 0; j < 10; ++j)
         {
-            for(int j = 0; j < 10; ++j)
-            {
-                borderImage.at<Vec3b>(Point(beginMap.x + j, beginMap.y + i)) = borderGFX.at<Vec3b>(Point(j, i));
-                borderImage.at<Vec3b>(Point(endMap.x + j - 10, endMap.y + i - 10)) = borderGFX.at<Vec3b>(Point(j, i));
-            }
+            borderImage.at<Vec3b>(Point(beginMap.x + j, beginMap.y + i)) = borderGFX.at<Vec3b>(Point(j, i));
+            borderImage.at<Vec3b>(Point(endMap.x + j - 10, endMap.y + i - 10)) = borderGFX.at<Vec3b>(Point(j, i));
         }
+    }
 
     return &borderImage;
 }

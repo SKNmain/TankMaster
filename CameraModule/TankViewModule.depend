@@ -26,3 +26,30 @@
 
 1518011587 f:\programy\codebloks\projekty\gametankmanager\gametankmanager\tankviewmodule\camerasymulation.hpp
 
+1518608107 source:f:\repo\tankmaster\cameramodule\main.cpp
+	<iostream>
+	<vector>
+	<sstream>
+	<string.h>
+	<fstream>
+	"opencv2/core.hpp"
+	"opencv2/highgui.hpp"
+	<opencv2/imgproc/imgproc.hpp>
+	"opencv2/core/mat.hpp"
+	<time.h>
+	"function.hpp"
+	"Obstacles.hpp"
+	"TankDetector.hpp"
+	"GameManager.hpp"
+	"CameraSymulation.hpp"
+
+1518010394 f:\repo\tankmaster\cameramodule\function.hpp
+
+1519145846 f:\repo\tankmaster\cameramodule\obstacles.hpp
+
+1518011549 f:\repo\tankmaster\cameramodule\tankdetector.hpp
+
+1519145950 f:\repo\tankmaster\cameramodule\gamemanager.hpp
+
+1518011587 f:\repo\tankmaster\cameramodule\camerasymulation.hpp
+

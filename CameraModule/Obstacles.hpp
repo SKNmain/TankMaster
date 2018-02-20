@@ -17,6 +17,8 @@ class Obstacles
 
         bool viewIsReady;
 
+        vector<vector<Point> > obstaclesVertices; //tablica która przechowóje wartości z
+
         Obstacles();
         int TurnPoint(Point p0, Point p1, Point p2); //wyznaczenie prawo lub lewo skrętności jakiś 3 punktów
         void SetImageToDetection(Mat realCamView); //pobranie obrazu z zewnątrz np kamery
@@ -24,6 +26,8 @@ class Obstacles
         vector<vector<Point> > ObstacleDetection(ofstream &outFile); //wyszukuje prrzeszkody na grafice i zapisuje punkty do pliku
         Mat *GetTriangleView(); //wypluwa obrazek z narysowanymi przeszkodami po triangulacji dostępne dopiero po urzyciu funkcji ObstacleDetection(ofstream)
         Mat *GetColorView(); //wypluwa obrazek z zaznaczonymi tylko i wyłącznie przeszkodami
+
+
 };
 
 void TrackbarObstacleColor(int, void*) {} //funkcja która wykonuje się gdy coś zmieniasz na suwaczku od kolorów przeszkód

@@ -42,6 +42,9 @@ int main()
     cout << gm.obstaclesManager.S_MIN << " " << gm.obstaclesManager.S_MAX << "\n";
     cout << gm.obstaclesManager.V_MIN << " " << gm.obstaclesManager.V_MAX << "\n";
 
+    //DEBUG
+    bool debugWindow = true;
+
     while(true)
     {
         cs.RefreshCamera();
@@ -75,8 +78,13 @@ int main()
         }
 
         resize(resultImage, resultImage, Size(winSizeX, winSizeY));
-        resizeWindow("GameView", winSizeX, winSizeY);
-        imshow("GameView", resultImage);
+
+        if(debugWindow)
+        {
+            resizeWindow("GameView", winSizeX, winSizeY);
+            imshow("GameView", resultImage);
+        }
+
 
         switch(waitKey(20)) //poruszanie się kulką
         {
@@ -131,6 +139,13 @@ int main()
             break;
             case 117: //u zapis grafiki do pliku
                 imwrite("./outimage.png", resultImage);
+            break;
+            case 45: //- włączenie i wyłączanie widoku z okna
+                if(debugWindow)
+                {
+                    debugWindow = false;
+                }
+                else debugWindow = true;
             break;
 
             if(!cs.camView)

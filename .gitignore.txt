@@ -1,0 +1,6 @@
+CameraModule/bin
+CameraModule/obj
+*.exe
+*.cbp
+*.depend
+*.layout
